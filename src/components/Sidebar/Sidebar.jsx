@@ -1,36 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Sidebar.css';
 import { assets } from '../../assets/assets';
 
 const Sidebar = () => {
+    const [extended, setextended] = useState(false);
   return (
     <div  className="sidebar">
         <div className='top'>
-            <img className='menu' src={assets.menu_icon} alt=''/>
+            <img onClick={()=>setextended(prev=>!prev)} className='menu' src={assets.menu_icon} alt=''/>
             <div className='new-chat'>
                 <img src={assets.plus_icon}/>
-                <p>New Chat</p>
+                {extended?<p>New Chat</p>:null}
             </div>
-            <div className='recent'>
-                <p className='recent-title'>Recent</p>
-                <div className='recent-entry'>
-                    <img src={assets.message_icon}/>
-                    <p>what is vue</p>
+            {extended?
+                <div className='recent'>
+                    <p className='recent-title'>Recent</p>
+                    <div className='recent-entry'>
+                        <img src={assets.message_icon}/>
+                        <p>what is vue</p>
+                    </div>
                 </div>
-            </div>
+                :null
+            }
         </div>
         <div className='bottom'>
             <div className='bottom-item recent-entry'>
                 <img src={assets.question_icon} />
-                <p>Help</p>
+                {extended?<p>Help</p>:null}
             </div>
             <div className='bottom-item recent-entry'>
                 <img src={assets.history_icon} />
-                <p>Activity</p>
+                {extended?<p>Activity</p>:null}
             </div>
             <div className='bottom-item recent-entry'>
                 <img src={assets.setting_icon} />
-                <p>Setting</p>
+                {extended?<p>Setting</p>:null}
             </div>
         </div>
     </div>
